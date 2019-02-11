@@ -1,28 +1,19 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import useCounter from './hooks/useCounter';
+import SubComponent from './SubComponent';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
-}
+const App = () => {
+  // 카운터 로직 분리하여 재사용성 증가
+  const [counter, modCounter] = useCounter();
+
+  return (
+    <div>
+      {counter}
+      <button onClick={() => modCounter.up()}>올라가요</button>
+      <button onClick={() => modCounter.down()}>내려가요</button>
+      <SubComponent />
+    </div>
+  );
+};
 
 export default App;
